@@ -100,9 +100,13 @@ class ManageResult:
             with open(settings.TEMP_JSON, encoding="utf-8") as results_competitors:
                 data_results = json.load(results_competitors)
         except FileNotFoundError:
-            os.mkdir(settings.TEMP_DIR)
-            with open(settings.TEMP_JSON, "x", encoding="utf-8"):
-                data_results = result_runner
+            try:
+                os.mkdir(settings.TEMP_DIR)
+                with open(settings.TEMP_JSON, "x", encoding="utf-8"):
+                    data_results = result_runner
+            except FileExistsError:
+                with open(settings.TEMP_JSON, "x", encoding="utf-8"):
+                    data_results = result_runner
         data_results.update(result_runner)
         with open(settings.TEMP_JSON, "w", encoding="utf-8") as results_competitors:
             json.dump(data_results, results_competitors, indent=5, ensure_ascii=False)
