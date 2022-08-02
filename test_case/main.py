@@ -30,7 +30,7 @@ class Main(ManageResult):
             )
             for place, runner in enumerate(sort_results_competitors):
                 print(
-                    f"{place + 1} {runner[0]} {runner[1]['Name']} {runner[1]['Surname']} {runner[1]['time'][:-3]},{runner[1]['time'][-2:]}"
+                    f"{place + 1} {runner[0]} {runner[1]['Name']} {runner[1]['Surname']} {runner[1]['time'][2:]},{runner[1]['dist']}"
                 )
         self.del_temp_file()
 
